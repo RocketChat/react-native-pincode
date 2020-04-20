@@ -4,12 +4,14 @@ const colors_1 = require("./design/colors");
 const grid_1 = require("./design/grid");
 const delay_1 = require("./delay");
 const utils_1 = require("./utils");
-const async_storage_1 = require("@react-native-community/async-storage");
+// import AsyncStorage from "@react-native-community/async-storage";
+const AsyncStorage_1 = require("./AsyncStorage");
 const d3_ease_1 = require("d3-ease");
 const React = require("react");
 const Animate_1 = require("react-move/Animate");
 const react_native_1 = require("react-native");
-const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
+// import Icon from "react-native-vector-icons/MaterialIcons";
+const Icons_1 = require("./Icons");
 class ApplicationLocked extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -43,7 +45,11 @@ class ApplicationLocked extends React.PureComponent {
         this.renderIcon = () => {
             return (React.createElement(react_native_1.View, { style: [styles.viewIcon, this.props.styleViewIcon] }, this.props.lockedIconComponent ?
                 this.props.lockedIconComponent :
-                React.createElement(MaterialIcons_1.default, { name: this.props.nameIcon, size: this.props.sizeIcon, color: this.props.colorIcon })));
+                React.createElement(Icons_1.default
+                // name={this.props.nameIcon}
+                // size={this.props.sizeIcon}
+                // color={this.props.colorIcon}
+                , null)));
         };
         this.renderErrorLocked = () => {
             const minutes = Math.floor(this.state.timeDiff / 1000 / 60);
@@ -103,7 +109,7 @@ class ApplicationLocked extends React.PureComponent {
         this.renderTitle = this.renderTitle.bind(this);
     }
     componentDidMount() {
-        async_storage_1.default.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
+        AsyncStorage_1.default.getItem(this.props.timePinLockedAsyncStorageName).then(val => {
             this.timeLocked = new Date(val ? val : "").getTime() + this.props.timeToLock;
             this.timer();
         });
@@ -114,7 +120,7 @@ class ApplicationLocked extends React.PureComponent {
         await delay_1.default(1000);
         if (timeDiff < 1000) {
             this.props.changeStatus(utils_1.PinResultStatus.initial);
-            async_storage_1.default.multiRemove([
+            AsyncStorage_1.default.multiRemove([
                 this.props.timePinLockedAsyncStorageName,
                 this.props.pinAttemptsAsyncStorageName
             ]);

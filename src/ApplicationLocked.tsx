@@ -3,7 +3,8 @@ import { grid } from "./design/grid";
 import delay from "./delay";
 import { PinResultStatus } from "./utils";
 
-import AsyncStorage from "@react-native-community/async-storage";
+// import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from './AsyncStorage';
 import { easeLinear } from "d3-ease";
 import * as React from "react";
 import Animate from "react-move/Animate";
@@ -14,7 +15,8 @@ import {
   Text,
   Platform
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
+// import Icon from "react-native-vector-icons/MaterialIcons";
+import Icon from './Icons';
 
 export type IProps = {
   buttonComponent?: any
@@ -171,9 +173,9 @@ class ApplicationLocked extends React.PureComponent<IProps, IState> {
         {this.props.lockedIconComponent ?
           this.props.lockedIconComponent :
           <Icon
-            name={this.props.nameIcon}
-            size={this.props.sizeIcon}
-            color={this.props.colorIcon}
+            // name={this.props.nameIcon}
+            // size={this.props.sizeIcon}
+            // color={this.props.colorIcon}
           />}
       </View>
     );

@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const PinCode_1 = require("./PinCode");
 const React = require("react");
 const react_native_1 = require("react-native");
-const Keychain = require("react-native-keychain");
+// import * as Keychain from 'react-native-keychain'
+const Keychain_1 = require("./Keychain");
 class PinCodeChoose extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -19,7 +20,7 @@ class PinCodeChoose extends React.PureComponent {
                     this.props.storePin(pinCode);
                 }
                 else {
-                    await Keychain.setInternetCredentials(this.props.pinCodeKeychainName, this.props.pinCodeKeychainName, pinCode);
+                    await Keychain_1.default.setInternetCredentials(this.props.pinCodeKeychainName, this.props.pinCodeKeychainName, pinCode);
                 }
                 if (!!this.props.finishProcess)
                     this.props.finishProcess(pinCode);

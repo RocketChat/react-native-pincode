@@ -1,7 +1,7 @@
 "use strict";
+// import AsyncStorage from '@react-native-community/async-storage'
+// import * as Keychain from 'react-native-keychain'
 Object.defineProperty(exports, "__esModule", { value: true });
-const async_storage_1 = require("@react-native-community/async-storage");
-const Keychain = require("react-native-keychain");
 var PinResultStatus;
 (function (PinResultStatus) {
     PinResultStatus["initial"] = "initial";
@@ -10,13 +10,16 @@ var PinResultStatus;
     PinResultStatus["locked"] = "locked";
 })(PinResultStatus = exports.PinResultStatus || (exports.PinResultStatus = {}));
 exports.hasPinCode = async (serviceName) => {
-    return await Keychain.getInternetCredentials(serviceName).then(res => {
-        return !!res && !!res.password;
-    });
+    // return await Keychain.getInternetCredentials(serviceName).then(res => {
+    //   return !!res && !!res.password
+    // })
+    return Promise.resolve(true);
 };
 exports.deletePinCode = async (serviceName) => {
-    return await Keychain.resetInternetCredentials(serviceName);
+    // return await Keychain.resetInternetCredentials(serviceName)
+    return Promise.resolve();
 };
 exports.resetInternalStates = async (asyncStorageKeys) => {
-    return await async_storage_1.default.multiRemove(asyncStorageKeys);
+    // return await AsyncStorage.multiRemove(asyncStorageKeys)
+    return Promise.resolve();
 };

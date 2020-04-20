@@ -2,7 +2,8 @@ import PinCode, { PinStatus } from './PinCode'
 
 import * as React from 'react'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
-import * as Keychain from 'react-native-keychain'
+// import * as Keychain from 'react-native-keychain'
+import Keychain from './Keychain';
 
 /**
  * Pin Code Choose PIN Page

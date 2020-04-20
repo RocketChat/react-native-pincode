@@ -2,7 +2,8 @@ import delay from './delay'
 import PinCode, { PinStatus } from './PinCode'
 import { PinResultStatus } from './utils'
 
-import AsyncStorage from '@react-native-community/async-storage'
+// import AsyncStorage from '@react-native-community/async-storage'
+import AsyncStorage from './AsyncStorage';
 import * as React from 'react'
 import {
   StyleProp,
@@ -11,8 +12,9 @@ import {
   View,
   ViewStyle
 } from 'react-native'
-import * as Keychain from 'react-native-keychain'
-import TouchID from 'react-native-touch-id'
+// import * as Keychain from 'react-native-keychain'
+import Keychain from './Keychain';
+// import TouchID from 'react-native-touch-id'
 
 /**
  * Pin Code Enter PIN Page
@@ -109,15 +111,15 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
     this.state = { pinCodeStatus: PinResultStatus.initial, locked: false }
     this.endProcess = this.endProcess.bind(this)
     this.launchTouchID = this.launchTouchID.bind(this)
-    if (!this.props.storedPin) {
-      Keychain.getInternetCredentials(
-        this.props.pinCodeKeychainName
-      ).then(result => {
-        this.keyChainResult = result && result.password || undefined        
-      }).catch(error => {
-        console.log('PinCodeEnter: ', error)
-      })
-    }
+    // if (!this.props.storedPin) {
+    //   Keychain.getInternetCredentials(
+    //     this.props.pinCodeKeychainName
+    //   ).then(result => {
+    //     this.keyChainResult = result && result.password || undefined        
+    //   }).catch(error => {
+    //     console.log('PinCodeEnter: ', error)
+    //   })
+    // }
   }
 
   componentDidMount() {
@@ -138,18 +140,19 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
   }
 
   triggerTouchID() {
-    TouchID.isSupported()
-      .then(() => {
-        setTimeout(() => {
-          this.launchTouchID()
-        })
-      })
-      .catch((error: any) => {
-        console.warn('TouchID error', error)
-      })
+    // TouchID.isSupported()
+    //   .then(() => {
+    //     setTimeout(() => {
+    //       this.launchTouchID()
+    //     })
+    //   })
+    //   .catch((error: any) => {
+    //     console.warn('TouchID error', error)
+    //   })
   }
 
   endProcess = async (pinCode?: string) => {
+    // console.log('PinCodeEnter -> endProcess -> pinCode', pinCode);
     if (!!this.props.endProcessFunction) {
       this.props.endProcessFunction(pinCode as string)
     } else {
@@ -211,22 +214,22 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
       unifiedErrors: false,
       passcodeFallback: this.props.passcodeFallback
     }
-    try {
-      await TouchID.authenticate(
-        this.props.touchIDSentence,
-        Object.assign({}, optionalConfigObject, {
-          title: this.props.touchIDTitle
-        })
-      ).then((success: any) => {
-        this.endProcess(this.props.storedPin || this.keyChainResult)
-      })
-    } catch (e) {
-      if (!!this.props.callbackErrorTouchId) {
-        this.props.callbackErrorTouchId(e)
-      } else {
-        console.log('TouchID error', e)
-      }
-    }
+    // try {
+    //   await TouchID.authenticate(
+    //     this.props.touchIDSentence,
+    //     Object.assign({}, optionalConfigObject, {
+    //       title: this.props.touchIDTitle
+    //     })
+    //   ).then((success: any) => {
+    //     this.endProcess(this.props.storedPin || this.keyChainResult)
+    //   })
+    // } catch (e) {
+    //   if (!!this.props.callbackErrorTouchId) {
+    //     this.props.callbackErrorTouchId(e)
+    //   } else {
+    //     console.log('TouchID error', e)
+    //   }
+    // }
   }
 
   render() {

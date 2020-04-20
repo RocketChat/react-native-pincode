@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ApplicationLocked_1 = require("./src/ApplicationLocked");
 const PinCode_1 = require("./src/PinCode");
+exports.PinStatus = PinCode_1.PinStatus;
 const PinCodeChoose_1 = require("./src/PinCodeChoose");
 const PinCodeEnter_1 = require("./src/PinCodeEnter");
 const utils_1 = require("./src/utils");
-const async_storage_1 = require("@react-native-community/async-storage");
+// import AsyncStorage from '@react-native-community/async-storage'
 const React = require("react");
 const react_native_1 = require("react-native");
 const disableLockScreenDefault = false;
@@ -30,11 +31,11 @@ class PINCode extends React.PureComponent {
         this.state = { internalPinStatus: utils_1.PinResultStatus.initial, pinLocked: false };
         this.changeInternalStatus = this.changeInternalStatus.bind(this);
         this.renderLockedPage = this.renderLockedPage.bind(this);
-        async_storage_1.default.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
-            this.setState({ pinLocked: !!val });
-        }).catch(error => {
-            console.log('PINCode: ', error);
-        });
+        //   AsyncStorage.getItem(this.props.timePinLockedAsyncStorageName || timePinLockedAsyncStorageNameDefault).then((val) => {
+        //     this.setState({ pinLocked: !!val });
+        //   }).catch(error => {
+        //   console.log('PINCode: ', error)
+        // })
     }
     render() {
         const { status, pinStatus, styleMainContainer } = this.props;

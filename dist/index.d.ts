@@ -1,7 +1,8 @@
-/// <reference types="react" />
+import { PinStatus } from "./src/PinCode";
 import { PinResultStatus } from "./src/utils";
 import * as React from "react";
 import { StyleProp, ViewStyle, TextStyle } from "react-native";
+export { PinStatus };
 export declare type IProps = {
     bottomLeftComponent?: any;
     buttonComponentLockedPage?: any;

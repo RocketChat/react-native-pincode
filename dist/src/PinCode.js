@@ -9,7 +9,8 @@ const React = require("react");
 const Animate_1 = require("react-move/Animate");
 const react_native_1 = require("react-native");
 const react_native_easy_grid_1 = require("react-native-easy-grid");
-const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
+// import Icon from "react-native-vector-icons/MaterialIcons";
+const Icons_1 = require("./Icons");
 var PinStatus;
 (function (PinStatus) {
     PinStatus["choose"] = "choose";
@@ -201,7 +202,12 @@ class PinCode extends React.PureComponent {
                     this.props.customBackSpaceIcon({ colorDelete: this.state.colorDelete, opacity })
                     :
                         React.createElement(React.Fragment, null,
-                            !this.props.iconButtonDeleteDisabled && (React.createElement(MaterialIcons_1.default, { name: this.props.styleDeleteButtonIcon, size: this.props.styleDeleteButtonSize, color: this.state.colorDelete, style: { opacity: opacity } })),
+                            !this.props.iconButtonDeleteDisabled && (React.createElement(Icons_1.default
+                            // name={this.props.styleDeleteButtonIcon}
+                            // size={this.props.styleDeleteButtonSize}
+                            // color={this.state.colorDelete}
+                            // style={{ opacity: opacity }}
+                            , null)),
                             React.createElement(react_native_1.Text, { style: [
                                     styles.textDeleteButton,
                                     this.props.styleDeleteButtonText,
